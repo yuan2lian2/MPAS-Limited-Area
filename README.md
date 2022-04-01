@@ -26,10 +26,10 @@ Then, run the `create_region` command-line script (**YL**: radius is now an user
 $ # Running the script with no arguments will produce a usage output
 Usage: create_region [-h] [-v VERBOSE] [-r RADIUS] points grid create_region
 
-points: a file containing the domain shape to be created (e.g., circle, channel)
-grid: SCVT meshes downloaded from the MPAS official website
+points:  a file containing the domain shape to be created (e.g., circle, channel)
+grid:    SCVT meshes downloaded from the MPAS official website
 VERBOSE: 0-5, various levels of debugging messages
-RADIUS: radius of planet in meters (need to be consistent with MPAS model)
+RADIUS:  radius of planet in meters (need to be consistent with MPAS model)
 
 create_region: error: the following arguments are required: points, grid
 ```
