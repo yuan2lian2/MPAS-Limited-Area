@@ -150,6 +150,12 @@ class LimitedArea():
                                           *args,
                                           **kwargs)
 
+        if self._DEBUG_ > 0:
+           print('Check lower and upper boundaries of latitude  in the final regional domain (relaxation zones included) [radian] \n', \
+                  '     min, max = ', np.min(regionalMesh.mesh.variables['latCell']), np.max(regionalMesh.mesh.variables['latCell']))
+           print('Check lower and upper boundaries of longitude in the final regional domain (relaxation zones included) [radian] \n', \
+                  '     min, max = ', np.min(regionalMesh.mesh.variables['lonCell']), np.max(regionalMesh.mesh.variables['lonCell']))
+
         print('Copying global attributes...')
         self.mesh.copy_global_attributes(regionalMesh)
 
@@ -337,6 +343,10 @@ class LimitedArea():
 
         if self._DEBUG_ > 0:
             print("DEBUG: Num Boundary Cells: ", len(boundaryCells))
+            print("Check lower and upper boundaries of marked latitude  corresponding to the points file [radian] \n",  \
+                  "     min, max = ", np.min(mesh.latCells[boundaryCells]), np.max(mesh.latCells[boundaryCells]))
+            print("Check lower and upper boundaries of marked longitude corresponding to the points file [radian] \n",  \
+                  "     min, max = ", np.min(mesh.lonCells[boundaryCells]), np.max(mesh.lonCells[boundaryCells]))
 
         # Mark the boundary cells that were given as input
         for bCells in boundaryCells:

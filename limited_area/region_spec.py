@@ -10,8 +10,6 @@ from limited_area.mesh import latlon_to_xyz, xyz_to_latlon
 from limited_area.mesh import rotate_about_vector
 import numpy as np
 
-EARTH_RADIUS = 6371229 # Meters
-
 """ region_spec.py - Provide a number of operations for defining a 
 region. """
 
@@ -61,6 +59,7 @@ class RegionSpec:
         """
         # Keyword Args
         self._DEBUG_ = kwargs.get('DEBUG', 0)
+        self._PLANET_RADIUS = kwargs.get('PLANET_RADIUS', 0)
         self._gen_spec = create_bound_method(PointsParser, self)
 
     def gen_spec(self, fileName, *args, **kwargs):
@@ -109,7 +108,7 @@ class RegionSpec:
                                                     self.in_point[1])
 
             # Divide by sphere radius to get radius upon sphere
-            self.radius = self.radius / EARTH_RADIUS
+            self.radius = self.radius / self._PLANET_RADIUS
             self.points = self.circle(self.in_point[0], self.in_point[1], self.radius)
             return self.name, self.in_point, [self.points.flatten()]
         elif self.type == 'ellipse':
@@ -226,8 +225,8 @@ class RegionSpec:
         C = latlon_to_xyz(center_lat, center_lon, 1.0)
 
         # Convert semi-major and semi-minor axis lengths from meters to radians
-        semi_major = semi_major / EARTH_RADIUS
-        semi_minor = semi_minor / EARTH_RADIUS
+        semi_major = semi_major / self._PLANET_RADIUS
+        semi_minor = semi_minor / self._PLANET_RADIUS
 
         # Convert orientation angle to radians
         orientation = orientation * np.pi / 180.0

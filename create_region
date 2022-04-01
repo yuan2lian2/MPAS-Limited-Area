@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.9
 
 from __future__ import absolute_import, division, print_function
 import argparse
@@ -37,19 +37,26 @@ if __name__ == "__main__":
                          type=int,
                          default=0)
 
+    options.add_argument('-r', '--radius',
+                         help='Planet radius in meters',
+                         type=float,
+                         default=6371229.)
+
     args, unkown = parser.parse_known_args()
 
 
     DEBUG = args.verbose
+    PLANET_RADIUS = args.radius
     if  DEBUG > 0:
         print("DEBUG: DEBUG set to verbose level ", DEBUG, '\n')
 
     if DEBUG > 1:
         print("DEBUG: Grid File: ", args.grid)
         print("DEBUG: Points File: ", args.points)
+        print("DEBUG: Planet Radius: ", args.radius)
 
 
-    kwargs = { 'DEBUG' : DEBUG }
+    kwargs = { 'DEBUG' : DEBUG, 'PLANET_RADIUS' : PLANET_RADIUS}
 
     regional_area = LimitedArea(args.grid,
                                 args.points,

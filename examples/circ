@@ -1,0 +1,4 @@
+Name: my_circle
+Type: circle
+Point: 90, 0
+Radius: 1000000.0 # Meters

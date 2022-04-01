@@ -88,38 +88,38 @@ def PointsParser(self, file, *args, **kwargs):
             lhs = lhs.strip()
             rhs = rhs.strip()
 
-            if lhs == 'Name' or lhs == 'name':
+            if lhs.lower() == 'name':
                 # TODO: Do some error checking of the name
                 self.name = rhs
             # Check to see if the type matches our avaiable types
-            elif lhs == 'Type' or lhs == 'type':
-                if rhs == 'Custom' or rhs == 'custom':
+            elif lhs.lower() == 'type':
+                if rhs.lower() == 'custom':
                     self.type = 'custom'
-                elif rhs == 'Channel' or rhs == 'channel':
+                elif rhs.lower() == 'channel':
                     self.type = 'channel'
-                elif rhs == 'Circle' or rhs == 'circle':
+                elif rhs.lower() == 'circle':
                     self.type = 'circle'
-                elif rhs == 'Ellipse' or rhs == 'ellipse':
+                elif rhs.lower() == 'ellipse':
                     self.type = 'ellipse'
                 else:
                     print("ERROR: This is not a valid points type: ", rhs)
                     sys.exit(-1)
-            elif lhs == 'Point' or lhs == 'point':
+            elif lhs.lower() == 'point':
                 if ',' in rhs:
 
                     self.in_point = [float(rhs.split(',')[0]),
                                      float(rhs.split(',')[1])]
-            elif lhs == 'Radius' or lhs == 'radius':
+            elif lhs.lower() == 'radius':
                 self.radius = float(rhs)
-            elif lhs == 'Semi-major-axis' or lhs == 'semi-major-axis':
+            elif lhs.lower() == 'emi-major-axis':
                 self.semimajor = float(rhs)
-            elif lhs == 'Semi-minor-axis' or lhs == 'semi-minor-axis':
+            elif lhs.lower() == 'semi-minor-axis':
                 self.semiminor = float(rhs)
-            elif lhs == 'Orientation-angle' or lhs == 'orientation-angle':
+            elif lhs.lower() == 'orientation-angle':
                 self.orientation = float(rhs)
-            elif lhs == 'uLat' or lhs == 'Upper-lat' or lhs == 'upper-lat' or lhs == 'ulat':
+            elif lhs == 'uLat' or lhs.lower() == 'upper-lat' or lhs == 'ulat':
                 self.ulat = float(rhs)
-            elif lhs == 'lLat' or lhs == 'Lower-lat' or lhs == 'lower-lat' or lhs == 'llat':
+            elif lhs == 'lLat' or lhs.lower() == 'lower-lat' or lhs == 'llat':
                 self.llat = float(rhs)
         elif line == 'keyword': # Then we have a keyword option
             pass
