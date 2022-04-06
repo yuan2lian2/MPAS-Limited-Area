@@ -59,7 +59,9 @@ class RegionSpec:
         """
         # Keyword Args
         self._DEBUG_ = kwargs.get('DEBUG', 0)
-        self._PLANET_RADIUS = kwargs.get('PLANET_RADIUS', 0)
+        self._PLANET_RADIUS = kwargs.get('PLANET_RADIUS', 0.)
+        if (self._PLANET_RADIUS == 0.):
+           raise ValueError("Invalid planet radius given: use -r or --radius option to define radius")
         self._gen_spec = create_bound_method(PointsParser, self)
 
     def gen_spec(self, fileName, *args, **kwargs):
